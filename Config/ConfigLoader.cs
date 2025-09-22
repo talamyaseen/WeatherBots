@@ -1,12 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.IO;
+using System.Text.Json;
 
 namespace WeatherBots.Config
 {
-    internal class ConfigLoader
+    public static class ConfigLoader
     {
+        public static BotConfigRoot Load(string path)
+        {
+            var txt = File.ReadAllText(path);
+            var opts = new JsonSerializerOptions { PropertyNameCaseInsensitive = true };
+            return JsonSerializer.Deserialize<BotConfigRoot>(txt, opts) ?? new BotConfigRoot();
+        }
     }
 }

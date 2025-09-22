@@ -1,12 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using WeatherBots.Models;
 
 namespace WeatherBots.Observers
 {
-    internal interface IWeatherObserver
+    public interface IWeatherObserver
     {
+        string Name { get; }
+        void Update(WeatherData data);
     }
 }
