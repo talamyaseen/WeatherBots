@@ -15,8 +15,6 @@ namespace WeatherBots.Utils
             if (string.IsNullOrWhiteSpace(firstLine)) return firstLine;
 
             var sb = new StringBuilder();
-
-            // ask factory to give the correct checker
             var checker = CompletenessCheckerFactory.CreateChecker(firstLine);
 
             string? next = firstLine;
