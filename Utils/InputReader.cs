@@ -20,7 +20,7 @@ namespace WeatherBots.Utils
             var checker = CompletenessCheckerFactory.CreateChecker(firstLine);
 
             string? next = firstLine;
-            while (!checker.IsComplete && next != null)
+            while (!checker.IsComplete && next is not null)
             {
                 sb.AppendLine(next);
                 checker.Consume(next);
