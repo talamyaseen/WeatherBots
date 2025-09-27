@@ -15,7 +15,6 @@ namespace WeatherBots
             {
                 Console.WriteLine("WeatherBots — Starting up...");
 
-                // ??? ?? ????? ????? ????? ??? exe
                 var configPath = Path.Combine(AppContext.BaseDirectory, "bots_config.json");
                 if (!File.Exists(configPath))
                 {

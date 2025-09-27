@@ -15,18 +15,16 @@ namespace WeatherBots.Utils
             if (string.IsNullOrWhiteSpace(firstLine)) return firstLine;
 
             var sb = new StringBuilder();
-            sb.AppendLine(firstLine);
 
             // ask factory to give the correct checker
             var checker = CompletenessCheckerFactory.CreateChecker(firstLine);
-            checker.Consume(firstLine);
 
-            while (!checker.IsComplete)
+            string? next = firstLine;
+            while (!checker.IsComplete && next != null)
             {
-                var next = Console.ReadLine();
-                if (next == null) break;
                 sb.AppendLine(next);
                 checker.Consume(next);
+                next = Console.ReadLine();
             }
 
             var documentText = sb.ToString().Trim();
