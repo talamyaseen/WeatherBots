@@ -21,14 +21,7 @@ namespace WeatherBots.Observers
         {
             foreach (var o in _observers)
             {
-                try
-                {
                     o.Update(data);
-                }
-                catch (System.Exception ex)
-                {
-                    System.Console.WriteLine($"Observer {o.Name} threw an exception: {ex.Message}");
-                }
             }
         }
     }

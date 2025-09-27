@@ -9,17 +9,17 @@ namespace WeatherBots.Observers
         {
             var list = new List<IWeatherObserver>();
 
-            if (root.RainBot != null)
+            if (root.RainBot is not null)
             {
                 list.Add(new RainBot(root.RainBot));
             }
 
-            if (root.SunBot != null)
+            if (root.SunBot is not null)
             {
                 list.Add(new SunBot(root.SunBot));
             }
 
-            if (root.SnowBot != null)
+            if (root.SnowBot is not null)
             {
                 list.Add(new SnowBot(root.SnowBot));
             }
