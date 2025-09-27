@@ -18,26 +18,10 @@ namespace WeatherBots.Parsing
         {
             data = null;
             var trimmed = input.TrimStart();
-
-            //XML 
-            if (trimmed.StartsWith("<"))
+            foreach (var parser in Parsers)
             {
-                var xmlParser = Parsers.Find(p => p.Name == "xml");
-                if (xmlParser != null && xmlParser.TryParse(input, out data)) return true;
+                if (parser.TryParse(trimmed, out data)) return true;
             }
-            //json
-            else if (trimmed.StartsWith("{") || trimmed.StartsWith("["))
-            {
-                var jsonParser = Parsers.Find(p => p.Name == "json");
-                if (jsonParser != null && jsonParser.TryParse(input, out data)) return true;
-            }
-
-            //fallback
-            foreach (var p in Parsers)
-            {
-                if (p.TryParse(input, out data)) return true;
-            }
-
             return false;
         }
 
