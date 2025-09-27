@@ -4,25 +4,29 @@ using WeatherBots.Utils;
 
 namespace WeatherBots.Utils
 {
-    internal static class InputReader
+    public static class InputReader
     {
         public static string? ReadDocument()
         {
             var firstLine = Console.ReadLine();
             if (firstLine == null) return null;
 
-            firstLine = firstLine.TrimEnd();
-            if (string.IsNullOrWhiteSpace(firstLine)) return firstLine;
+            firstLine = firstLine.Trim();
+            if (string.IsNullOrWhiteSpace(firstLine)) return null;
 
             var sb = new StringBuilder();
             var checker = CompletenessCheckerFactory.CreateChecker(firstLine);
 
-            string? next = firstLine;
-            while (!checker.IsComplete && next is not null)
+            string? line = firstLine;
+            while (line != null)
             {
-                sb.AppendLine(next);
-                checker.Consume(next);
-                next = Console.ReadLine();
+                sb.AppendLine(line);
+                checker.Consume(line);
+
+                if (checker.IsComplete)
+                    break;
+
+                line = Console.ReadLine();
             }
 
             var documentText = sb.ToString().Trim();

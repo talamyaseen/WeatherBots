@@ -1,6 +1,6 @@
 ﻿using WeatherBots.Utils;
 
-internal sealed class JsonCompletenessChecker : ICompletenessChecker
+public sealed class JsonCompletenessChecker : ICompletenessChecker
 {
     private int _brace, _bracket;
 
