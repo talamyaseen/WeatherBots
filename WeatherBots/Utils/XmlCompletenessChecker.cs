@@ -1,7 +1,7 @@
 ﻿using System.Text.RegularExpressions;
 using WeatherBots.Utils;
 
-internal sealed class XmlCompletenessChecker : ICompletenessChecker
+public sealed class XmlCompletenessChecker : ICompletenessChecker
 {
     private string? _root;
     private bool _foundClosing;
