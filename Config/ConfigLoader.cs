@@ -9,7 +9,10 @@ namespace WeatherBots.Config
         {
             var txt = File.ReadAllText(path);
             var opts = new JsonSerializerOptions { PropertyNameCaseInsensitive = true };
-            return JsonSerializer.Deserialize<BotConfigRoot>(txt, opts) ?? new BotConfigRoot();
+            var config = JsonSerializer.Deserialize<BotConfigRoot>(txt, opts);
+            if (config is null)
+                throw new InvalidDataException($"Could not deserialize the config file at path: {path}"); 
+            return config;
         }
     }
 }
